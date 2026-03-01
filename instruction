@@ -1,35 +1,70 @@
 1️⃣ Open Terminal
 Press:
-Copy code
 
 Ctrl + `
+
 OR
 Click Terminal → New Terminal
+
 2️⃣ Make Sure You Are in the Correct Folder
 Type:
-Copy code
 
 ls
+
 You should see:
-Copy code
 
 ll1.c
+
 If not, navigate to your project folder:
-Copy code
 
 cd compiler_toolkit
+
 3️⃣ Compile the Program
-Copy code
 
 gcc ll1.c -o ll1
 If there is no error, compilation is successful.
+
 4️⃣ Run the Program
-Copy code
 
 ./ll1
 5️⃣ If gcc Is Not Installed (Run Once)
-Copy code
 
 sudo apt update
 sudo apt install build-essential -y
 Then compile again.
+
+Example output👇
+
+===== STEP 1: Ambiguous Grammar =====
+E -> E+E | E*E | (E) | id
+Example: id + id * id has multiple parse trees.
+
+===== STEP 2: Unambiguous Grammar =====
+E -> E + T | T
+T -> T * F | F
+F -> (E) | id
+
+===== STEP 3: Remove Left Recursion =====
+E  -> T E'
+E' -> + T E' | ε
+T  -> F T'
+T' -> * F T' | ε
+F  -> (E) | i
+
+===== STEP 4: FIRST Sets =====
+FIRST(E)  = { ( i }
+FIRST(E') = { + # }
+FIRST(T)  = { ( i }
+FIRST(T') = { * # }
+FIRST(F)  = { ( i }
+
+===== STEP 5: FOLLOW Sets =====
+FOLLOW(E)  = { ) $ }
+FOLLOW(E') = { ) $ }
+FOLLOW(T)  = { + ) $ }
+FOLLOW(T') = { + ) $ }
+FOLLOW(F)  = { * + ) $ }
+
+===== STEP 6: Predictive Parsing Table =====
+LL(1) Table constructed using FIRST and FOLLOW.
+Grammar is suitable for predictive parsing.
