@@ -1,89 +1,35 @@
-✅ Step 1: Open Codespace
+1️⃣ Open Terminal
+Press:
+Copy code
 
-Open this GitHub repository.
-
-Click the green Code button.
-
-Go to the Codespaces tab.
-
-Click Create codespace on main.
-
-Wait until the online VS Code environment opens.
-
-✅ Step 2: Open Terminal
-
-Inside Codespace:
-
+Ctrl + `
+OR
 Click Terminal → New Terminal
+2️⃣ Make Sure You Are in the Correct Folder
+Type:
+Copy code
 
-You will see something like:
+ls
+You should see:
+Copy code
 
-username ➜ /workspaces/repo-name $
+ll1.c
+If not, navigate to your project folder:
+Copy code
 
-✅ Step 3: Install Flex and Bison
+cd compiler_toolkit
+3️⃣ Compile the Program
+Copy code
 
-Run:
+gcc ll1.c -o ll1
+If there is no error, compilation is successful.
+4️⃣ Run the Program
+Copy code
+
+./ll1
+5️⃣ If gcc Is Not Installed (Run Once)
+Copy code
 
 sudo apt update
-sudo apt install flex bison -y
-
-
-Check installation:
-
-flex --version
-bison --version
-
-✅ Step 4: Compile the Compiler
-
-Now run:
-
-yacc -d simple.y
-flex simple.l
-gcc y.tab.c lex.yy.c -o compiler -lfl
-
-
-✅ Step 5: Run the Compiler
-./compiler
-
-
-You will see:
-
-Enter program (Ctrl+D to finish):
-
-🧪 Example Correct Input
-
-Paste this:
-
-int a;
-int b;
-int c;
-c = a + b * 3;
-
-
-Then press:
-
-Ctrl + D
-
-✅ Expected Output
-
-You will see all six phases:
-
-========== 1. LEXICAL ANALYSIS ==========
-(tokens...)
-
-========== 2. SYNTAX ANALYSIS ==========
-Syntax is valid
-
-========== 3. SEMANTIC ANALYSIS ==========
-Semantic checks passed
-
-========== 4. INTERMEDIATE CODE ==========
-t0 = b * 3
-t1 = a + t0
-c = t1
-
-========== 5. OPTIMIZATION ==========
-Constant folding applied
-
-========== 6. TARGET CODE ==========
-MOV R1, result
+sudo apt install build-essential -y
+Then compile again.
